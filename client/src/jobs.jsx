@@ -1,37 +1,17 @@
+import useFetch from "./fetch";
+import Table from "./table"
 const Jobs = () => {
+    const {data, isPending, error} = useFetch("http://localhost:5000/dashboard");
+    console.log(data)
     return(
-        <table className="content-table">
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Location</td>
-                    <td>Department</td>
-                    <td>Status</td>
-                    <td>Date</td>
-                    <td>Link</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Ui/Ux Designer</td>
-                    <td>Casablanca, Morocco</td>
-                    <td>Design</td>
-                    <td>Active</td>
-                    <td>6th, April</td>
-                    <td><a className="link" href="https://www.google.com/">google.com</a></td>
-                </tr>
-                <tr className="active-row">
-                    <td>Ui/Ux Designer</td>
-                    <td>Casablanca, Morocco</td>
-                    <td>Design</td>
-                    <td>Active</td>
-                    <td>6th, April</td>
-                    <td className="Link"><a>google.com</a></td>
-                </tr>
-            </tbody>
-            
-        </table>
-    );
+        <div>
+            {error && <div>{error}</div>}
+            {isPending && <div>Loading...</div>}
+            {data && <Table data = {data} type = "jobs"></Table>}
+        </div>
+        
+    )
+
 }
  
 export default Jobs;

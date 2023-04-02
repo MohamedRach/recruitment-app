@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const SideBar = () => {
     return (
         <div className="SideBar">
@@ -7,9 +7,9 @@ const SideBar = () => {
             </div>
             <div className="menu">
                 <ul>
-                    <li><Link to="/dashboard">DashBoard</Link></li>
-                    <li><Link to="/jobs">Jobs</Link></li>
-                    <li><Link to="/candidates">Candidates</Link></li>
+                    <li><NavLink exact className="menuItem" to="/dashboard">DashBoard</NavLink></li>
+                    <li><Link exact className="menuItem" to="/jobs">Jobs</Link></li>
+                    <li><Link exact className="menuItem" to="/candidates">Candidates</Link></li>
                 </ul>
             </div>
 

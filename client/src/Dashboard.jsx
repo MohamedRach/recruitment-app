@@ -1,6 +1,8 @@
 import Details from "./details";
 
+
 const Dashboard = () => {
+    
     return (
         <div className="stats">
             <Details/>
