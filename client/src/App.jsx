@@ -8,11 +8,12 @@ import Profile from './profile';
 import AddJob from "./AddJob";
 import JobPage from "./jobPage";
 function App() {
-  
+  //console.log(window.location.pathname)
+  let pattern = new RegExp('/jobs/[a-zA-Z0-9]*');
   return (
     <Router>
       <div>
-          <SideBar />
+          {pattern.test(window.location.pathname) !== true && <SideBar /> }
           <div className="content">
             <Routes>
               <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
