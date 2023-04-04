@@ -1,8 +1,9 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
-const dbURI = "mongodb+srv://mohamed:Papa@cluster0.85qvts5.mongodb.net/RecruitmentApp?retryWrites=true&w=majority";
+const dbURI = process.env.dbURI;
 const Job = require("./models/job");
 app.use(
     cors({
