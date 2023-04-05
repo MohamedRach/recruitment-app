@@ -75,7 +75,7 @@ const jobSchema = new schema({
         default: null
     },
     candidates:{
-        type: candidatesSchema,
+        type: [candidatesSchema],
         default: null
     },
     details:{

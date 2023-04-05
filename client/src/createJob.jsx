@@ -2,20 +2,19 @@ import { useState } from "react";
 import axios from 'axios'
 
 const CreateJob = () => {
-    const [title, setTitle] = useState('');
-    const [location, setLocation] = useState('');
-    const [department, setDepartment] = useState('');
-    const [date, setDate] = useState("");
-    const [status, setStatus] = useState('active')
-    const [link, setLink] = useState("nice");
+    const [overview, setOverview] = useState('');
+    const [AboutTheRole, setAboutTheRoled] = useState('');
+    const [WhatYouWillDo, setWhatYouWillDo] = useState('');
+    const [WhoYouAre, setWhoYouAre] = useState("");
     const [isPending, setPending] = useState(false)
+    const id = window.location.pathname.slice(8,);
         //let navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        const job = {title, location, department, date, status, link}
+        const details = {overview,AboutTheRole , WhatYouWillDo, WhoYouAre}
             //console.log(blog)
         setPending(true);
-        axios.post("http://localhost:5000/jobs/create", job)
+        axios.post(`http://localhost:5000/create/${id}`, details)
             .then(() => {
                 console.log("success");
                 setPending(false);
@@ -32,23 +31,19 @@ const CreateJob = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="inputfield">
                         <label>OverView</label>
-                        <textarea  className="input" name="title" required value={title} onChange= {(e) => setTitle(e.target.value)}/>
+                        <textarea  className="input" name="overview" required value={overview} onChange= {(e) => setOverview(e.target.value)}/>
                     </div>  
                         <div className="inputfield">
                         <label>About The role </label>
-                        <textarea  className="input" name="location" required value={location} onChange= {(e) => setLocation(e.target.value)}/>
+                        <textarea  className="input" name="AboutTheRole" required value={AboutTheRole} onChange= {(e) => setAboutTheRoled(e.target.value)}/>
                     </div>  
                     <div className="inputfield">
                         <label>What Will you do</label>
-                        <textarea className="input" name="department" required value={department} onChange= {(e) => setDepartment(e.target.value)}/>
-                    </div>  
-                    <div className="inputfield">
-                        <label>Department</label>
-                        <input type="text" className="input" />
-                    </div> 
+                        <textarea className="input" name="WhatYouWillDo" required value={WhatYouWillDo} onChange= {(e) => setWhatYouWillDo(e.target.value)}/>
+                    </div>   
                     <div className="inputfield">
                         <label>Who you are ?</label>
-                        <textarea  className="input" />  
+                        <textarea  className="input" name="WhoYouAre" required value={WhoYouAre} onChange= {(e) => setWhoYouAre(e.target.value)}/>  
                     </div>
 
                     <input type="hidden" name="status" value = "new application" />

@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Profile from './profile';
 import AddJob from "./AddJob";
 import JobPage from "./jobPage";
+import CreateJob from "./createJob";
 function App() {
   //console.log(window.location.pathname)
   let pattern = new RegExp('/jobs/[a-zA-Z0-9]*');
@@ -22,6 +23,7 @@ function App() {
               <Route path="/candidates/profile" element={<Profile></Profile>}></Route>
               <Route path="/jobs/create" element={<AddJob />}></Route>
               <Route path="/jobs/:id" element={<JobPage />}></Route>
+              <Route path="/create/:id" element={<CreateJob />}></Route>
             </Routes>
               
           </div>

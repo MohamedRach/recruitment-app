@@ -37,3 +37,41 @@ app.post('/jobs/create', (req,res) => {
         .then(() => console.log("nice"))
         .catch((err) => console.log(err));
 })
+app.get('/candidates', (req,res) => {
+    Job.find({}, {candidates:1})
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
+app.post("/candidates/:id", (req, res) => {
+    Job.findByIdAndUpdate(req.params.id, {$push: {candidates: req.body}})
+        .then((result) => {
+            console.log("nice")
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})
+app.post('/create/:id', (req, res) => {
+    //console.log(req.body)
+    //console.log(req.params)
+    Job.findByIdAndUpdate(req.params.id, {details: req.body})
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})
+app.get('/jobs/:id', (req,res) => {
+    Job.findById(req.params.id)
+        .then((result) => {
+            res.send(result)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})

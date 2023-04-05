@@ -20,7 +20,7 @@ const Table = ({data, type}) => {
                             <td>{dt.department}</td>
                             <td>{dt.status}</td>
                             <td>{dt.date.slice(0,10)}</td>
-                            <td><a href={data.details ? `/jobs/${dt._id}` : `/create/${dt._id}`}>{dt.details ? "see job's page" : "create job's page"}</a></td>
+                            <td><a href={dt.details ? `/jobs/${dt._id}` : `/create/${dt._id}`}>{dt.details ? "see job's page" : "create job's page"}</a></td>
                             
                         </tr>    
                     ))
