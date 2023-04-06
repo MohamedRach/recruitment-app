@@ -1,0 +1,3 @@
+set up authentification
+set up dashboard
+correct the database model

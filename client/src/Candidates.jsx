@@ -23,7 +23,7 @@ const Candidates = () => {
                         <td>{cand.jobRole}</td>
                         <td>{cand.department}</td>
                         <td>{cand.status}</td>
-                        <td><Link to="/candidates/profile">See details</Link></td>
+                        <td><Link to="/candidates/profile" state= {{ candidate: cand }}>See details</Link></td>
                     </tr>))}
                     
                     
