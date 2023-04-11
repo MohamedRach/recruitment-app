@@ -40,7 +40,7 @@ const JobPage = () => {
             
         );
     } else {
-        return (<div><h1>Loading</h1></div>)
+        return (<div class="loader"></div>)
     }
     
 }

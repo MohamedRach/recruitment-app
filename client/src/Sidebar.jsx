@@ -1,5 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useLogout } from "./hooks/useLogout";
 const SideBar = () => {
+    const navigate = useNavigate()
+    const {logout} = useLogout()
+    const handleClick = () => {
+        logout()
+        navigate("/login")
+    }
     return (
         <div className="SideBar">
             <div className="logo">
@@ -14,7 +21,7 @@ const SideBar = () => {
             </div>
 
             <div className="settings">
-                <p>Settings</p>
+                <p onClick={() => handleClick()}>LogOut</p>
             </div>
         </div>
     );

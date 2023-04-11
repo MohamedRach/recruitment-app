@@ -25,9 +25,12 @@ const candidatesSchema = new schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     resume: {
-        data: Buffer,
-        contentType: String
+        type: String
     }
 })
 const detailsSchema = new schema({
@@ -50,6 +53,10 @@ const detailsSchema = new schema({
     
 })
 const jobSchema = new schema({
+    user_id:{
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true

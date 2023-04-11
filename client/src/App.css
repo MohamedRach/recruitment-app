@@ -10,12 +10,47 @@ body{
   font-family: 'Crimson Pro';
   margin-top: 0px;
 }
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.75s, visibility 0.75s;
+}
 
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader::after {
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid #8dafef;
+  border-top-color: #377DFF;
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
 .SideBar{
   background-color: white;
   height: 100%;
   width: 200px;
   position: fixed;
+
 }
 .logo{
   text-align: center;
@@ -50,23 +85,27 @@ body{
 }
 .stats{
   display: grid;
-  grid-template-columns:  300px[col-start] 250px [col-end] 250px [col-end];
+  grid-template-columns:  250px[col-start] 250px [col-end] 250px [col-end] 250px [col-end];
   column-gap: 10px;
-  margin-left: 300px;
+  margin-left: 220px;
 }
 .details{
-  margin-top: 100px;
+  margin-top: 20px;
   background-color: white;
   height: 70px;
-  padding: 20px 10px;
+  height: 100px;
+  padding-left: 10px;
   border-radius: 5px;
-  background-color: #38CB89;
+  background-color: #377DFF;
   color: white;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   
 }
-
+.bar{
+  margin-left: 270px;
+  
+}
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -113,6 +152,11 @@ body{
   font-weight: bold;
   color: #377DFF;
 }
+.deleteJob{
+  color: red;
+  cursor: pointer;
+  padding-left: 15px;
+}
 .link{
   cursor: pointer;
   text-decoration: none;
@@ -132,7 +176,23 @@ body{
   border-radius: 3px;
   width: 100px;
 }
-
+.btn-add{
+  position: relative;
+  left: 400px;
+  top: 90px;
+  background: none;
+  border: none;
+  width: 100px;
+  height: 40px;
+  background-color: #377DFF;
+  color: white;
+  font-weight: bolder;
+  border-radius: 4px;
+}
+.create{
+  text-decoration: none;
+  color: white;
+}
 .wrapper{
   max-width: 500px;
   width: 100%;

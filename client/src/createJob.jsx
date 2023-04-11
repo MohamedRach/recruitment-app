@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from 'axios'
-
+import SideBar from './Sidebar';
 const CreateJob = () => {
     const [overview, setOverview] = useState('');
     const [AboutTheRole, setAboutTheRoled] = useState('');
@@ -14,7 +14,10 @@ const CreateJob = () => {
         const details = {overview,AboutTheRole , WhatYouWillDo, WhoYouAre}
             //console.log(blog)
         setPending(true);
-        axios.post(`http://localhost:5000/create/${id}`, details)
+        const config = {
+            headers: { 'x-auth-token': localStorage.getItem('token') },
+          };
+        axios.post(`http://localhost:5000/create/${id}`, details, config)
             .then(() => {
                 console.log("success");
                 setPending(false);
@@ -26,6 +29,7 @@ const CreateJob = () => {
     }
     return (
         <div className="wrapper">
+            <SideBar />
             <div className="title">Create A job Page</div>
             <div className="form">
                 <form onSubmit={handleSubmit}>

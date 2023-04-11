@@ -1,30 +1,27 @@
 import { useState } from "react";
 import axios from 'axios'
-import FileBase64 from 'react-file-base64';
-import Candidates from "./Candidates";
-
-const PopUp = () => {
-    const id = window.location.pathname.slice(6,)
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [department, setDepartment] = useState('');
-    const [jobRole, setJobRole] = useState("");
-    const [adresse, setAdresse] = useState('')
-    const [email, setEmail] = useState("");
-    const [status, setStatus] = useState("new application");
-    const [resume, setResume] = useState(null);
+const UpdatePopUp = ({data}) => {
+    const jobId = data.id;
+    console.log(jobId)
+    const [firstName, setFirstName] = useState(data.candidate.firstName);
+    const [lastName, setLastName] = useState(data.candidate.lastName);
+    const [department, setDepartment] = useState(data.candidate.department);
+    const [jobRole, setJobRole] = useState(data.candidate.jobRole);
+    const [adresse, setAdresse] = useState(data.candidate.adresse)
+    const [email, setEmail] = useState(data.candidate.email);
+    const [status, setStatus] = useState(data.candidate.status);
+    const resume = data.candidate.resume;
     const [isPending, setPending] = useState(false)
         //let navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        const candidate = {firstName, lastName, jobRole, department, adresse, status,email, resume}
+        const candidate = {firstName, lastName, jobRole, department, adresse, email, status, resume}
             //console.log(blog)
-            
+        setPending(true);
         const config = {
             headers: { 'x-auth-token': localStorage.getItem('token') },
-        };
-        setPending(true);
-        axios.post(`http://localhost:5000/candidates/${id}`, candidate, config)
+          };
+        axios.put(`http://localhost:5000/candidates/${jobId}/${data.candidate._id}`, candidate, config)
             .then(() => {
                 console.log("success");
                 setPending(false);
@@ -64,11 +61,11 @@ const PopUp = () => {
                         <input type="text" name="email"className="input" required value={email} onChange= {(e) => setEmail(e.target.value)} /> 
                     </div>
                     <div className="inputfield">
-                        <label>Upload your resume</label>
-                        <FileBase64 multiple={ false } onDone={ ({base64}) => setResume(base64) } /> 
+                        <label>Status</label>
+                        <input type="text" name="email"className="input" required value={status} onChange= {(e) => setStatus(e.target.value)} /> 
                     </div>
                     <div className="inputfield">
-                        <button className="btn">Apply</button>
+                        <button className="btn">Update</button>
                     </div>
                     
                 </form>
@@ -78,4 +75,4 @@ const PopUp = () => {
     )
 }
 
-export default PopUp;
+export default UpdatePopUp;

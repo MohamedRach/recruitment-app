@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from 'axios'
+import {useJobsContext} from "./hooks/useJobsContext"
+import SideBar from './Sidebar';
 const AddJob = () => {
-  
+        const {dispatch} = useJobsContext();
         const [title, setTitle] = useState('');
         const [location, setLocation] = useState('');
         const [department, setDepartment] = useState('');
@@ -15,10 +17,14 @@ const AddJob = () => {
             const job = {title, location, department, date, status, link}
             //console.log(blog)
             setPending(true);
-            axios.post("http://localhost:5000/jobs/create", job)
+            const config = {
+                headers: { 'x-auth-token': localStorage.getItem('token') },
+              };
+            axios.post("http://localhost:5000/jobs/create", job, config)
                 .then(() => {
                     console.log("success");
                     setPending(false);
+                    dispatch({type: "CREATE_JOB", payload: job})
                 })
                 .catch((err) => {
                     console.log(err);
@@ -28,7 +34,8 @@ const AddJob = () => {
   
     return (
         <div className="wrapper">
-            <div className="title">Registration Form</div>
+            
+            <div className="title">Add Job</div>
             <div className="form">
                 <form onSubmit={handleSubmit}>
                     <div className="inputfield">
@@ -58,7 +65,10 @@ const AddJob = () => {
                         </div>
                     </div>
                     <input type="hidden" name="link" value = {link} />
-                    <button className="btn">register</button>
+                    <div className="inputfield">
+                        <button className="btn">register</button>
+                    </div>
+                    
                 </form>
                 
             </div>
