@@ -2,18 +2,20 @@ import useFetch from './fetch'
 import BarChart from "./BarChart";
 import SideBar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
+import { useCandidatesContext } from './hooks/useCandidatesContext';
 const Dashboard = () => {
     
     
     
-        const {data, isPending, error} = useFetch("http://localhost:5000/candidates");
+        const {candidates} = useCandidatesContext();
+        console.log(candidates);
         console.log(localStorage.getItem('user'))
         var total = 0;
         var newApp = 0;
         var rejectedApp = 0;
         var interviewApp =0;
-        if(data){
-            data.forEach((candidates) => {
+        if(candidates){
+            candidates.forEach((candidates) => {
                 total += candidates.candidates.length
                 console.log(candidates.candidates)
                 candidates.candidates.forEach((cand) => {
@@ -31,8 +33,7 @@ const Dashboard = () => {
         return (
             <div>
                 <SideBar />
-                {isPending && <div class="loader"></div>}
-                {data && <div><div className="stats">
+                {candidates && <div><div className="stats">
                     <div className="details">
                         <h2>Total Applications</h2>
                         <h3>{total}</h3>

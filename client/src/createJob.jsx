@@ -29,7 +29,7 @@ const CreateJob = () => {
     }
     return (
         <div className="wrapper">
-            <SideBar />
+            
             <div className="title">Create A job Page</div>
             <div className="form">
                 <form onSubmit={handleSubmit}>

@@ -22,8 +22,8 @@ const UpdatePopUp = ({data}) => {
             headers: { 'x-auth-token': localStorage.getItem('token') },
           };
         axios.put(`http://localhost:5000/candidates/${jobId}/${data.candidate._id}`, candidate, config)
-            .then(() => {
-                console.log("success");
+            .then((result) => {
+                console.log(result);
                 setPending(false);
             })
             .catch((err) => {

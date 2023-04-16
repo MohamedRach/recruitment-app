@@ -1,5 +1,6 @@
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa';
-import axios from 'axios'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Table = ({data, type}) => {
     const handleDelete = (id) => {
         axios.delete(`http://localhost:5000/jobs/${id}`)
@@ -29,7 +30,7 @@ const Table = ({data, type}) => {
                                 <td>{dt.department}</td>
                                 <td>{dt.status}</td>
                                 <td>{dt.date.slice(0,10)}</td>
-                                <td><a href={dt.details ? `/jobs/${dt._id}` : `/create/${dt._id}`}>{dt.details ? "see job's page" : "create job's page"}</a></td>
+                                <td><Link to={dt.details ? `/jobs/${dt._id}` : `/create/${dt._id}`}>{dt.details ? "see job's page" : "create job's page"}</Link></td>
                                 <td><FaTrashAlt className='deleteJob' onClick={() => handleDelete(dt._id)}></FaTrashAlt></td>
                             </tr>    
                         ))

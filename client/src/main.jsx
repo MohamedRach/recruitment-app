@@ -4,11 +4,14 @@ import App from './App'
 import './index.css'
 import {JobsContextProvider} from "./context/JobsContext"
 import {AuthContextProvider} from "./context/AuthContext"
+import {CandidatesContextProvider} from './context/candidatesContext';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
       <JobsContextProvider>
-          <App />
+          <CandidatesContextProvider>
+              <App />
+          </CandidatesContextProvider>
       </JobsContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,

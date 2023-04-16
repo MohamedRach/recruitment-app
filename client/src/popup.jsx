@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from 'axios'
 import FileBase64 from 'react-file-base64';
 import Candidates from "./Candidates";
+import {useCandidatesContext} from './hooks/useCandidatesContext';
 
 const PopUp = () => {
     const id = window.location.pathname.slice(6,)
@@ -13,7 +14,8 @@ const PopUp = () => {
     const [email, setEmail] = useState("");
     const [status, setStatus] = useState("new application");
     const [resume, setResume] = useState(null);
-    const [isPending, setPending] = useState(false)
+    const [isPending, setPending] = useState(false);
+    const {dispatch} = useCandidatesContext();
         //let navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,6 +30,7 @@ const PopUp = () => {
             .then(() => {
                 console.log("success");
                 setPending(false);
+                dispatch({type: "CREATE_CANDIDATE", payload:candidate});
             })
             .catch((err) => {
                 console.log(err);

@@ -5,7 +5,7 @@ export const useJobsContext = () => {
     const context = useContext(JobsContext)
 
     if(!context){
-        throw Error("check workouts Provider")
+        throw Error("check jobs Provider")
     }
     return context
 }

@@ -27,8 +27,8 @@ function App() {
               <Route path="/candidates" element={token ? <Candidates></Candidates>: <Navigate to="/login" />}></Route> 
               <Route path="/candidates/profile" element={token ? <Profile></Profile> : <Navigate to="/login" />}></Route>
               <Route path="/jobs/create" element={token ? <AddJob /> : <Navigate to="/login" />}></Route>
-              <Route path="/jobs/:id" element={token ? <JobPage /> : <Navigate to="/login" />}></Route>
               <Route path="/create/:id" element={token ? <CreateJob /> : <Navigate to="/login" />}></Route>
+              <Route path="/jobs/:id" element={token ? <JobPage /> : <Navigate to="/login" />}></Route>
               <Route path="/login" element={!token ? <Login /> : <Navigate to="/dashboard" />}></Route>
               <Route path="/register" element={!token ? <Register /> : <Navigate to="/dashboard" />}></Route>
             </Routes>
