@@ -4,10 +4,10 @@ import SideBar from './Sidebar';
 import {useCandidatesContext} from './hooks/useCandidatesContext';
 const Candidates = () => {
     const {candidates, dispatch} = useCandidatesContext();
-    
+    var isPending;
     //console.log(data)
     if(!candidates){
-        const {data, isPending, error} = useFetch("http://localhost:5000/candidates");
+        var {data, isPending, error} = useFetch("http://localhost:5000/candidates");
         if(data){
             dispatch({type: "SET_CANDIDATES", payload: data});
         }
@@ -17,6 +17,7 @@ const Candidates = () => {
         return (
             <div>
                 <SideBar />
+                {isPending && <div className='loader'></div>}
                 {candidates && <div><table className="content-table">
                 <thead>
                     <tr>

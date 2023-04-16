@@ -4,11 +4,16 @@ import SideBar from './Sidebar';
 import {Link} from "react-router-dom"
 import {useJobsContext} from "./hooks/useJobsContext"
 const Jobs = () => {
+    
     const {jobs, dispatch} = useJobsContext()
-    const {data, isPending, error} = useFetch("http://localhost:5000/dashboard");
+    var isPending;
     console.log(data)
-    if(data){
-        dispatch({type: "SET_JOBS", payload: data})
+    if(!jobs){
+        var {data, isPending, error} = useFetch("http://localhost:5000/dashboard");
+        if(data){
+            dispatch({type: "SET_JOBS", payload: data})
+        }
+        
     }
     return(
         <div>

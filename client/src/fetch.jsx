@@ -5,7 +5,7 @@ const useFetch = (endPoint) => {
     const [isPending, setPendinng] = useState(true);
     const [error, setError] = useState(null)
     const {token} = useAuthContext()
-    console.log(token)
+    //console.log(token)
     useEffect(() => {
         const abortCont = new AbortController();
         fetch(endPoint, {signal: abortCont.signal, headers:{'x-auth-token': token}})

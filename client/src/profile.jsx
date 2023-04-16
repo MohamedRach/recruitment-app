@@ -18,7 +18,7 @@ const Profile = () => {
         const config = {
             headers: { 'x-auth-token': localStorage.getItem('token') },
           };
-        axios.delete(`http://localhost:5000/candidates/${id}/${candidate._id}`, candidate, config)
+        axios.delete(`http://localhost:5000/candidates/${id}/${candidate._id}`,config)
             .then(() => console.log("success"))
             .catch((err) => console.log(err))
     }
